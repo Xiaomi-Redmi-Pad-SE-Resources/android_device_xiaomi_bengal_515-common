@@ -18,6 +18,7 @@ AB_OTA_PARTITIONS += \
     odm \
     product \
     system \
+    system_dlkm \
     system_ext \
     vbmeta \
     vbmeta_system \
@@ -116,7 +117,7 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_USES_METADATA_PARTITION := true
 
 SSI_PARTITIONS := product system system_ext
-TREBLE_PARTITIONS := odm vendor vendor_dlkm
+TREBLE_PARTITIONS := odm system_dlkm vendor vendor_dlkm
 ALL_PARTITIONS := $(SSI_PARTITIONS) $(TREBLE_PARTITIONS)
 
 $(foreach p, $(call to-upper, $(ALL_PARTITIONS)), \
@@ -195,6 +196,9 @@ BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
+
+# Use sha256 hash algorithm for system_dlkm partition
+BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 # VINTF
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
