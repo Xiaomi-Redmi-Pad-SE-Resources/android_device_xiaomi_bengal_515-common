@@ -147,7 +147,7 @@ vendor.qcom.bluetooth.soc=hastings
 
 # Chipset
 ro.soc.manufacturer=QTI
-ro.soc.model=SM8250
+ro.soc.model=SM6225
 
 # Crypto
 ro.crypto.allow_encrypt_override=true

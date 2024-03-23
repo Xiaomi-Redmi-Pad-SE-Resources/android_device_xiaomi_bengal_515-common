@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2021-2023 The LineageOS Project
+# Copyright (C) 2021-2024 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -109,7 +109,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
-    audio.primary.kona \
+    audio.primary.bengal \
     audio.r_submix.default \
     audio.usbv2.default \
 
@@ -188,7 +188,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
-    memtrack.kona
+    memtrack.bengal
 
 PRODUCT_PACKAGES += \
     libdisplayconfig.qti \
@@ -499,4 +499,4 @@ PRODUCT_BOOT_JARS += \
     WfdCommon
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/xiaomi/sm8250-common/sm8250-common-vendor.mk)
+$(call inherit-product, vendor/xiaomi/sm6225-common/sm6225-common-vendor.mk)

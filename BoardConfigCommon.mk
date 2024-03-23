@@ -1,10 +1,10 @@
 #
-# Copyright (C) 2021 The LineageOS Project
+# Copyright (C) 2024 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
-COMMON_PATH := device/xiaomi/sm8250-common
+COMMON_PATH := device/xiaomi/sm6225-common
 
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
@@ -59,7 +59,7 @@ BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := kona
+TARGET_BOOTLOADER_BOARD_NAME := bengal
 TARGET_NO_BOOTLOADER := true
 
 # Display
@@ -85,8 +85,8 @@ TARGET_SURFACEFLINGER_UDFPS_LIB := //hardware/xiaomi:libudfps_extension.xiaomi
 endif
 
 # Init
-TARGET_INIT_VENDOR_LIB ?= //$(COMMON_PATH):init_xiaomi_kona
-TARGET_RECOVERY_DEVICE_MODULES ?= init_xiaomi_kona
+TARGET_INIT_VENDOR_LIB ?= //$(COMMON_PATH):init_xiaomi_bengal
+TARGET_RECOVERY_DEVICE_MODULES ?= init_xiaomi_bengal
 
 # Kernel
 ifeq ($(PRODUCT_VIRTUAL_AB_OTA),true)
@@ -103,8 +103,10 @@ BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
-TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config
+TARGET_KERNEL_SOURCE := kernel/xiaomi/sm6225
+TARGET_KERNEL_CONFIG := \
+    gki_defconfig \
+    vendor/bengal_GKI.config
 
 # Lineage Health
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
@@ -157,7 +159,7 @@ $(foreach p, $(call to-upper, $(TREBLE_PARTITIONS)), \
 # Platform
 BOARD_VENDOR := xiaomi
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_BOARD_PLATFORM := kona
+TARGET_BOARD_PLATFORM := bengal
 
 # Power
 TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
@@ -185,12 +187,12 @@ TARGET_RELEASETOOLS_EXTENSIONS ?= $(COMMON_PATH)
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Rootdir
-SOONG_CONFIG_NAMESPACES += XIAOMI_KONA_ROOTDIR
-SOONG_CONFIG_XIAOMI_KONA_ROOTDIR := PARTITION_SCHEME
+SOONG_CONFIG_NAMESPACES += XIAOMI_BENGAL_ROOTDIR
+SOONG_CONFIG_XIAOMI_BENGAL_ROOTDIR := PARTITION_SCHEME
 ifeq ($(TARGET_IS_VAB),true)
-SOONG_CONFIG_XIAOMI_KONA_ROOTDIR_PARTITION_SCHEME := vab
+SOONG_CONFIG_XIAOMI_BENGAL_ROOTDIR_PARTITION_SCHEME := vab
 else
-SOONG_CONFIG_XIAOMI_KONA_ROOTDIR_PARTITION_SCHEME := a
+SOONG_CONFIG_XIAOMI_BENGAL_ROOTDIR_PARTITION_SCHEME := a
 endif
 
 # Security patch level
@@ -249,4 +251,4 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
-include vendor/xiaomi/sm8250-common/BoardConfigVendor.mk
+include vendor/xiaomi/sm6225-common/BoardConfigVendor.mk
